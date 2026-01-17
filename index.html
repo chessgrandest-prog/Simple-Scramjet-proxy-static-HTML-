@@ -237,9 +237,9 @@
     .config-btn { display: none; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/dreamland"></script>
-  <script src="/main/baremux/index.js"></script>
-  <script src="/main/scram/scramjet.all.js"></script>
-  <script src="/main/proxy.config.js"></script>
+  <script src="./baremux/index.js"></script>
+  <script src="./scram/scramjet.all.js"></script>
+  <script src="./proxy.config.js"></script>
 </head>
 
 <body>
@@ -249,9 +249,9 @@
     
     const scramjet = new ScramjetController({
       files: {
-        wasm: "/main/scram/scramjet.wasm.wasm",
-        all: "/main/scram/scramjet.all.js",
-        sync: "/main/scram/scramjet.sync.js",
+        wasm: "./scram/scramjet.wasm.wasm",
+        all: "./scram/scramjet.all.js",
+        sync: "./scram/scramjet.sync.js",
       },
     });
     
@@ -259,7 +259,7 @@
     navigator.serviceWorker.register("./sw.js");
 
 
-    const connection = new BareMux.BareMuxConnection("/main/baremux/worker.js");
+    const connection = new BareMux.BareMuxConnection("./baremux/worker.js");
 
     const store = {
       url: "https://",
@@ -273,7 +273,7 @@
       proxy: "",
     };
 
-    connection.setTransport("/main/epoxy/index.mjs", [{ wisp: store.wispurl }]);
+    connection.setTransport("./epoxy/index.mjs", [{ wisp: store.wispurl }]);
 
     // tab management
     let tabs = [];
@@ -532,7 +532,7 @@
           return btoa(binary);
         }
         const arraybuffer = await (
-          await fetch("/main/assets/scramjet.png")
+          await fetch("./assets/scramjet.png")
         ).arrayBuffer();
         console.log(
           "%cb",
