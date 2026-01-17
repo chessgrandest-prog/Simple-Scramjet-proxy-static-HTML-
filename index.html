@@ -237,9 +237,9 @@
     .config-btn { display: none; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/dreamland"></script>
-  <script src="/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/baremux/index.js"></script>
-  <script src="/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/scram/scramjet.all.js"></script>
-  <script src="/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/proxy.config.js"></script>
+  <script src="/main/baremux/index.js"></script>
+  <script src="/main/scram/scramjet.all.js"></script>
+  <script src="/main/proxy.config.js"></script>
 </head>
 
 <body>
@@ -249,9 +249,9 @@
     
     const scramjet = new ScramjetController({
       files: {
-        wasm: "/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/scram/scramjet.wasm.wasm",
-        all: "/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/scram/scramjet.all.js",
-        sync: "/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/scram/scramjet.sync.js",
+        wasm: "/main/scram/scramjet.wasm.wasm",
+        all: "/main/scram/scramjet.all.js",
+        sync: "/main/scram/scramjet.sync.js",
       },
     });
     
@@ -259,7 +259,7 @@
     navigator.serviceWorker.register("./sw.js");
 
 
-    const connection = new BareMux.BareMuxConnection("/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/baremux/worker.js");
+    const connection = new BareMux.BareMuxConnection("/main/baremux/worker.js");
 
     const store = {
       url: "https://",
@@ -273,7 +273,7 @@
       proxy: "",
     };
 
-    connection.setTransport("/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/epoxy/index.mjs", [{ wisp: store.wispurl }]);
+    connection.setTransport("/main/epoxy/index.mjs", [{ wisp: store.wispurl }]);
 
     // tab management
     let tabs = [];
@@ -532,7 +532,7 @@
           return btoa(binary);
         }
         const arraybuffer = await (
-          await fetch("/media/archive/Simple-Scramjet-proxy-static-HTML-.zip/Simple-Scramjet-proxy-static-HTML--main/assets/scramjet.png")
+          await fetch("/main/assets/scramjet.png")
         ).arrayBuffer();
         console.log(
           "%cb",
